@@ -1,0 +1,74 @@
+@use "tokens" as *;
+
+.waitlist {
+  background: $nero;
+  color: $crema;
+  padding: 72px 0;
+
+  h2 {
+    font-size: clamp(40px, 6vw, 64px);
+    color: $crema;
+  }
+
+  p {
+    color: $linea;
+    max-width: 520px;
+    margin-top: 12px;
+  }
+
+  form {
+    margin-top: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  input[type="email"] {
+    flex: 1;
+    min-width: 260px;
+    background: transparent;
+    border: 1px solid $crema;
+    color: $crema;
+    padding: 14px 16px;
+    font-size: 16px;
+    border-radius: $radius-xs;
+
+    &::placeholder {
+      color: $nero-tenue;
+    }
+  }
+
+  button {
+    background: $terra;
+    color: $bianco;
+    border: none;
+    padding: 14px 28px;
+    font-size: 16px;
+    border-radius: $radius-xs;
+    cursor: pointer;
+
+    &:hover {
+      background: $terra-scuro;
+    }
+  }
+
+  .ok,
+  .ko {
+    margin-top: 16px;
+  }
+
+  .ok {
+    color: $crema;
+  }
+
+  .ko {
+    color: $terra;
+  }
+
+  .fine {
+    font-size: 13px;
+    color: $nero-tenue;
+    margin-top: 20px;
+    max-width: 520px;
+  }
+}

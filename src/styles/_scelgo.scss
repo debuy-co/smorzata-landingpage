@@ -1,0 +1,47 @@
+@use "tokens" as *;
+
+.scelgo {
+  background: $crema;
+  padding: 88px 0;
+
+  h2 {
+    font-size: clamp(36px, 5vw, 56px);
+  }
+
+  .rules {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 40px;
+    margin-top: 44px;
+  }
+
+  .rule {
+    .num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: $terra;
+      color: $bianco;
+      font-family: $font-mono;
+      font-size: 15px;
+    }
+
+    h4 {
+      font-size: 26px;
+      margin: 14px 0 6px;
+    }
+
+    p {
+      font-size: 15px;
+      color: $nero-tenue;
+    }
+  }
+
+  .sig {
+    margin-top: 52px;
+    font-size: 22px;
+  }
+}

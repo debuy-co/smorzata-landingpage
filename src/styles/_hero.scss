@@ -1,0 +1,42 @@
+@use "tokens" as *;
+
+.hero {
+  padding: 96px 0 80px;
+  text-align: left;
+
+  h1 {
+    font-size: clamp(52px, 9vw, 110px);
+    margin: 24px 0 12px;
+  }
+
+  .lead {
+    font-size: 20px;
+    color: $nero-tenue;
+    max-width: 560px;
+  }
+
+  .manifesto {
+    margin-top: 28px;
+    font-size: 17px;
+    max-width: 520px;
+    border-left: 3px solid $terra;
+    padding-left: 18px;
+  }
+
+  .cta-row {
+    margin-top: 44px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .waitlist-note {
+    font-size: 14px;
+    color: $nero-tenue;
+  }
+
+  @media (max-width: 640px) {
+    padding: 64px 0 56px;
+  }
+}

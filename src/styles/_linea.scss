@@ -1,0 +1,138 @@
+@use "tokens" as *;
+
+.linea {
+  padding: 96px 0;
+
+  h2 {
+    font-size: clamp(40px, 6vw, 64px);
+  }
+
+  .sub {
+    color: $nero-tenue;
+    margin-top: 10px;
+    max-width: 560px;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-top: 44px;
+  }
+
+  .card {
+    border: 1px solid $linea;
+    border-radius: $radius-sm;
+    overflow: hidden;
+    background: $crema;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .shot {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+
+    img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .missing {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+
+      .label {
+        color: $crema;
+      }
+    }
+  }
+
+  .thumbs {
+    display: flex;
+    gap: 8px;
+    padding: 12px 16px 0;
+
+    button {
+      width: 52px;
+      height: 52px;
+      border: 1px solid $linea;
+      border-radius: $radius-xs;
+      overflow: hidden;
+      cursor: pointer;
+      background: $linea;
+      padding: 0;
+      flex: 0 0 auto;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      &.active {
+        border-color: $terra;
+      }
+    }
+  }
+
+  .body {
+    padding: 20px 22px 26px;
+
+    h3 {
+      font-size: 34px;
+    }
+
+    .tipo {
+      color: $nero-tenue;
+      font-size: 15px;
+      margin: 6px 0 10px;
+    }
+
+    p {
+      font-size: 15px;
+      color: $nero-tenue;
+    }
+  }
+
+  .dots {
+    display: flex;
+    gap: 8px;
+    margin-top: 14px;
+    align-items: center;
+
+    span {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 1px solid $nero-tenue;
+    }
+
+    .cw {
+      width: auto;
+      height: auto;
+      border: none;
+      border-radius: 0;
+      font-size: 13px;
+      color: $nero-tenue;
+      margin-left: 4px;
+    }
+  }
+
+  .nota {
+    margin-top: 36px;
+    font-size: 14px;
+    color: $nero-tenue;
+  }
+}

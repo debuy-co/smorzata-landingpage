@@ -1,0 +1,49 @@
+@use "tokens" as *;
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(247, 246, 242, 0.92);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid $linea;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .nav-name {
+    font-size: 28px;
+  }
+
+  .links {
+    display: flex;
+    gap: 28px;
+    font-size: 15px;
+
+    a {
+      text-decoration: none;
+      color: $nero-tenue;
+
+      &:hover {
+        color: $nero;
+      }
+    }
+  }
+
+  @media (max-width: 640px) {
+    .links {
+      display: none;
+    }
+  }
+}

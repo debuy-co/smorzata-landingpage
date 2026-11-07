@@ -1,0 +1,24 @@
+@use "tokens" as *;
+
+footer {
+  background: $nero;
+  color: $nero-tenue;
+  padding: 40px 0;
+
+  .in {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .sig {
+    color: $crema;
+    font-size: 18px;
+  }
+
+  a {
+    color: $linea;
+  }
+}

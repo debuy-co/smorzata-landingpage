@@ -1,45 +1,61 @@
 # smorzata-landingpage
 
-landing page smorzata — tennis vero, sudore vero.
+landing page smorzata — tennis vero, sudore vero. react + vite, stili in scss.
+
+## sviluppo
+
+```bash
+npm install
+npm run dev      # locale
+npm run build    # dist/ pronto per pubblicare
+```
 
 ## struttura
 
 ```
-index.html            pagina singola, self-contained (nessuna dipendenza js)
-assets/render/*.jpg   render approvati della linea (NON ancora in repo, vedi sotto)
+index.html                    entry vite
+src/main.jsx                 bootstrap react
+src/App.jsx                  composizione sezioni
+src/components/              header, hero, linea, waitlist, come scegliamo, footer
+src/data/linea.js            dati capi, colorway e render (unica fonte)
+src/styles/main.scss         importa i partial
+src/styles/_tokens.scss      colori e font del design system
+public/assets/render/*.jpg   render approvati della linea
 ```
 
-## render — da copiare una volta sola
+## render
 
 i render approvati vivono in `debuy-co/macchina-instagram` in
-`config/brands/linea/render/`. il connettore github non riesce a pushare file
-binari senza corromperli, quindi vanno copiati a mano una volta:
+`config/brands/linea/render/` e vanno copiati in `public/assets/render/`
+(stessi nomi file):
 
 ```bash
 git clone git@github.com:debuy-co/smorzata-landingpage.git
 cd smorzata-landingpage
-mkdir -p assets/render
+mkdir -p public/assets/render
 git checkout git@github.com:debuy-co/macchina-instagram.git main -- config/brands/linea/render
-cp config/brands/linea/render/*.jpg assets/render/
-git add assets/render && git commit -m "render linea" && git push
+cp config/brands/linea/render/*.jpg public/assets/render/
+git add public/assets/render && git commit -m "render linea" && git push
 ```
 
-finché i jpg non ci sono, ogni card mostra il fallback colorway (nessun errore visibile).
+finché i jpg non ci sono, ogni card mostra il fallback colorway (`onError`).
 
-file attesi in `assets/render/`:
+file attesi:
 
 - `otto-di-sera-1.jpg` (crema) · `otto-di-sera-2.jpg` (terra)
 - `cancello-1.jpg` (verde) · `cancello-2.jpg` (crema) · `cancello-3.jpg` (crema) · `cancello-4.jpg` (terra)
 
-nota: del batch manca ancora l'otto di sera verde — quando esiste, aggiungere
-`otto-di-sera-3.jpg` e una riga in `SHOTS` dentro `index.html`.
+nota: manca ancora l'otto di sera verde — quando esiste, aggiungere
+`otto-di-sera-3.jpg` in `public/assets/render/` e una riga in
+`src/data/linea.js`.
 
 ## tipografia live
 
-il preview e la pagina usano font di fallback. prima di pubblicare, caricare da
-google fonts: big shoulders stencil 900 (display), schibsted grotesk (heading),
-instrument sans (body), dm mono (label/prezzo). il label uppercase resta
-riservato a "tennis vero. sudore e passione.".
+i fallback vanno bene per lo sviluppo. prima di pubblicare, caricare da google
+fonts: big shoulders stencil 900 (display), schibsted grotesk (heading),
+instrument sans (body), dm mono (label/prezzo), e dichiararli in
+`src/styles/_tokens.scss`. il label uppercase resta riservato a
+"tennis vero. sudore e passione.".
 
 ## form waitlist
 
