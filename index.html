@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>smorzata — tennis vero, sudore vero</title>
+<meta name="description" content="capi per chi gioca davvero sui campi pubblici. non siamo il club, siamo il cancello del club." />
+<style>
+  :root{
+    --nero:#141412;
+    --nero-tenue:#5e5a52;
+    --bianco:#f7f6f2;
+    --crema:#ece3d0;
+    --linea:#d8d1c2;
+    --verde:#1f3a2c;
+    --terra:#b5472a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bianco);
+    color:var(--nero);
+    font-family:"Instrument Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:17px;
+    line-height:1.6;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+  .display{
+    font-family:"Big Shoulders Stencil","Arial Narrow","Franklin Gothic Medium",Impact,sans-serif;
+    font-weight:900;
+    transform:skewX(-9deg);
+    text-transform:lowercase;
+    line-height:.95;
+    letter-spacing:.01em;
+  }
+  .mono{font-family:"DM Mono","Courier New",monospace;font-weight:500}
+  .label{
+    font-family:"DM Mono","Courier New",monospace;
+    text-transform:uppercase;
+    letter-spacing:.16em;
+    font-size:12px;
+    color:var(--nero-tenue);
+  }
+  a{color:inherit}
+
+  /* header */
+  header{
+    position:sticky;top:0;z-index:10;
+    background:rgba(247,246,242,.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--linea);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .nav .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .nav .logo .name{font-size:28px}
+  .nav .links{display:flex;gap:28px;font-size:15px}
+  .nav .links a{text-decoration:none;color:var(--nero-tenue)}
+  .nav .links a:hover{color:var(--nero)}
+
+  /* hero */
+  .hero{padding:96px 0 80px;text-align:left}
+  .hero h1{font-size:clamp(52px,9vw,110px);margin:24px 0 12px}
+  .hero h1 .dot{color:var(--terra)}
+  .hero p.lead{font-size:20px;color:var(--nero-tenue);max-width:560px}
+  .hero .manifesto{
+    margin-top:28px;
+    font-size:17px;
+    max-width:520px;
+    border-left:3px solid var(--terra);
+    padding-left:18px;
+  }
+  .cta-row{margin-top:44px;display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+  .btn{
+    display:inline-block;
+    background:var(--terra);color:var(--bianco);
+    text-decoration:none;
+    padding:14px 28px;
+    border-radius:2px;
+    font-size:16px;
+    letter-spacing:.02em;
+  }
+  .btn:hover{background:#9c3d24}
+  .btn.ghost{background:transparent;color:var(--nero);border:1px solid var(--nero)}
+  .btn.ghost:hover{background:var(--crema)}
+  .waitlist-note{font-size:14px;color:var(--nero-tenue)}
+
+  /* waitlist form */
+  .waitlist{
+    background:var(--nero);color:var(--crema);
+    padding:72px 0;
+  }
+  .waitlist h2{font-size:clamp(40px,6vw,64px);color:var(--crema)}
+  .waitlist p{color:var(--linea);max-width:520px;margin-top:12px}
+  .waitlist form{margin-top:32px;display:flex;flex-wrap:wrap;gap:12px}
+  .waitlist input[type=email]{
+    flex:1;min-width:260px;
+    background:transparent;border:1px solid var(--crema);
+    color:var(--crema);
+    padding:14px 16px;font-size:16px;border-radius:2px;
+  }
+  .waitlist input::placeholder{color:var(--nero-tenue)}
+  .waitlist button{
+    background:var(--terra);color:var(--bianco);
+    border:none;padding:14px 28px;font-size:16px;border-radius:2px;cursor:pointer;
+  }
+  .waitlist button:hover{background:#9c3d24}
+  .waitlist .ok{margin-top:16px;color:var(--crema);display:none}
+  .waitlist .fine{font-size:13px;color:var(--nero-tenue);margin-top:20px;max-width:520px}
+
+  /* linea */
+  .linea{padding:96px 0}
+  .linea h2{font-size:clamp(40px,6vw,64px)}
+  .linea .sub{color:var(--nero-tenue);margin-top:10px;max-width:560px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-top:44px}
+  .card{
+    border:1px solid var(--linea);
+    border-radius:6px;
+    overflow:hidden;
+    background:var(--crema);
+    display:flex;flex-direction:column;
+  }
+  .shot{
+    position:relative;
+    aspect-ratio:4/3;
+    overflow:hidden;
+    background:var(--linea);
+  }
+  .shot img{
+    position:absolute;inset:0;
+    width:100%;height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .shot .missing{
+    position:absolute;inset:0;
+    display:none; /* shown by onerror via JS */
+    flex-direction:column;align-items:center;justify-content:center;
+    gap:8px;
+  }
+  .thumbs{display:flex;gap:8px;padding:12px 16px 0}
+  .thumbs button{
+    width:52px;height:52px;
+    border:1px solid var(--linea);
+    border-radius:2px;
+    overflow:hidden;
+    cursor:pointer;
+    background:var(--linea);
+    padding:0;
+    flex:0 0 auto;
+  }
+  .thumbs button img{width:100%;height:100%;object-fit:cover;display:block}
+  .thumbs button.active{border-color:var(--terra)}
+  .thumbs button:empty{background:var(--linea)}
+  .card .body{padding:20px 22px 26px}
+  .card h3{font-size:34px}
+  .card .tipo{color:var(--nero-tenue);font-size:15px;margin:6px 0 10px}
+  .card p{font-size:15px;color:var(--nero-tenue)}
+  .dots{display:flex;gap:8px;margin-top:14px;align-items:center}
+  .dots span{width:16px;height:16px;border-radius:50%;border:1px solid var(--nero-tenue)}
+  .dots .cw{font-size:13px;color:var(--nero-tenue);margin-left:4px}
+  .linea .nota{margin-top:36px;font-size:14px;color:var(--nero-tenue)}
+
+  /* come scegliamo */
+  .scelgo{background:var(--crema);padding:88px 0}
+  .scelgo h2{font-size:clamp(36px,5vw,56px)}
+  .rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:40px;margin-top:44px}
+  .rule .num{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:34px;height:34px;border-radius:50%;
+    background:var(--terra);color:var(--bianco);
+    font-family:"DM Mono","Courier New",monospace;font-size:15px;
+  }
+  .rule h4{font-size:26px;margin:14px 0 6px}
+  .rule p{font-size:15px;color:var(--nero-tenue)}
+  .scelgo .sig{margin-top:52px;font-size:22px}
+
+  footer{background:var(--nero);color:var(--nero-tenue);padding:40px 0}
+  footer .in{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center}
+  footer .sig{color:var(--crema);font-size:18px}
+  footer a{color:var(--linea)}
+
+  @media(max-width:640px){
+    .nav .links{display:none}
+    .hero{padding:64px 0 56px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="smorzata">
+      <svg width="22" height="30" viewBox="0 0 200 260" aria-hidden="true">
+        <rect x="56" y="0" width="88" height="88" rx="44" fill="#b5472a"/>
+        <line x1="100" y1="118" x2="100" y2="260" stroke="#141412" stroke-width="18"/>
+        <line x1="100" y1="150" x2="100" y2="180" stroke="#f7f6f2" stroke-width="18" opacity=".0"/>
+      </svg>
+      <span class="display name">smorzata<span style="color:var(--terra)">.</span></span>
+    </a>
+    <nav class="links">
+      <a href="#linea">la linea</a>
+      <a href="#come-scegliamo">come scegliamo</a>
+      <a href="#waitlist">waitlist</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero wrap">
+    <span class="label">tennis vero. sudore e passione.</span>
+    <h1 class="display">non siamo il club.<br>siamo il cancello del club<span class="dot">.</span></h1>
+    <p class="lead">capi per chi gioca davvero sui campi pubblici. contro il country club e la polo stirata.</p>
+    <p class="manifesto">la smorzata è la palla che muore a un palmo dalla riga. non urla. non si giustifica. nemmeno noi.</p>
+    <div class="cta-row">
+      <a class="btn" href="#waitlist">entra nella waitlist</a>
+      <a class="btn ghost" href="#linea">vedi la linea</a>
+      <span class="waitlist-note">nessun prezzo. nessuna fretta. produzione solo se la lista si riempie.</span>
+    </div>
+  </section>
+
+  <section class="linea wrap" id="linea">
+    <h2 class="display">la linea<span style="color:var(--terra)">.</span></h2>
+    <p class="sub">tre capi, tre pesi di tessuto, tre tecniche. ricamato, non urlato.</p>
+    <div class="cards">
+
+      <article class="card" data-shots>
+        <div class="shot" data-main style="background:#ece3d0">
+          <img src="assets/render/otto-di-sera-1.jpg" alt="otto di sera, colorway crema" loading="lazy" />
+          <div class="missing">
+            <span class="label">render in arrivo</span>
+          </div>
+        </div>
+        <div class="thumbs" data-thumbs></div>
+        <div class="body">
+          <h3 class="display">otto di sera</h3>
+          <p class="tipo">quarter-zip pesante · tinta unita · ricamo sul petto</p>
+          <p>da mettere dopo la partita, dopo la doccia. collo alto, zip fino al petto.</p>
+          <div class="dots">
+            <span style="background:#ece3d0"></span>
+            <span style="background:#1f3a2c"></span>
+            <span style="background:#b5472a"></span>
+            <span class="cw">crema · verde · terra</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-shots>
+        <div class="shot" data-main style="background:#1f3a2c">
+          <img src="assets/render/cancello-1.jpg" alt="cancello, colorway verde" loading="lazy" />
+          <div class="missing">
+            <span class="label">render in arrivo</span>
+          </div>
+        </div>
+        <div class="thumbs" data-thumbs></div>
+        <div class="body">
+          <h3 class="display">cancello</h3>
+          <p class="tipo">felpa con cappuccio · tinta unita · ricamo sul petto</p>
+          <p>da sudati, dritti verso casa. il cancello del club, indosso.</p>
+          <div class="dots">
+            <span style="background:#ece3d0"></span>
+            <span style="background:#1f3a2c"></span>
+            <span style="background:#b5472a"></span>
+            <span class="cw">crema · verde · terra</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="shot" style="background:#1f3a2c">
+          <div class="missing" style="display:flex">
+            <span class="label" style="color:#ece3d0">terra che macchia · cemento spaccato · la riga</span>
+          </div>
+        </div>
+        <div class="body">
+          <h3 class="display">la riga</h3>
+          <p class="tipo">t-shirt · tre stampe · simbolo ricamato sull'orlo</p>
+          <p>il quadrato ricamato in basso a sinistra. la stampa fa il resto.</p>
+          <div class="dots">
+            <span style="background:#b5472a"></span>
+            <span style="background:#141412"></span>
+            <span style="background:#1f3a2c"></span>
+            <span class="cw">tre stampe, una per capo</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+    <p class="nota mono">foto rubate col telefono. nessuna posa, nessuno guarda in camera.</p>
+  </section>
+
+  <section class="waitlist" id="waitlist">
+    <div class="wrap">
+      <h2 class="display">la waitlist è aperta<span style="color:var(--terra)">.</span></h2>
+      <p>produciamo solo quando la lista giustifica il lotto. niente capi invenduti, niente sconti finti.</p>
+      <form id="wl" autocomplete="off">
+        <input type="email" id="email" placeholder="la tua email" required aria-label="email" />
+        <button type="submit">entro</button>
+      </form>
+      <p class="ok" id="ok">sei dentro. ti scriviamo solo quando conta.</p>
+      <p class="fine">nessuno spam. ti scriviamo quando apre il preordine. rimborso garantito se il lotto non parte.</p>
+    </div>
+  </section>
+
+  <section class="scelgo" id="come-scegliamo">
+    <div class="wrap">
+      <h2 class="display">come scegliamo<span style="color:var(--terra)">.</span></h2>
+      <div class="rules">
+        <div class="rule">
+          <span class="num">1</span>
+          <h4 class="display">passione</h4>
+          <p>se non lo metteremmo noi, non lo mettiamo in linea.</p>
+        </div>
+        <div class="rule">
+          <span class="num">2</span>
+          <h4 class="display">ricerca sul campo</h4>
+          <p>ogni capo provato giocando, non solo guardato. tre lavate a 30°, una partita nella tee.</p>
+        </div>
+        <div class="rule">
+          <span class="num">3</span>
+          <h4 class="display">vestibilità fuori dal campo</h4>
+          <p>una smorzata non urla.</p>
+        </div>
+      </div>
+      <p class="sig display">smorzata — tennis vero, sudore vero.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap in">
+    <span class="sig display">smorzata<span style="color:var(--terra)">.</span></span>
+    <span class="mono">© smorzata — tennis vero, sudore vero.</span>
+    <a href="#top">torna su</a>
+  </div>
+</footer>
+
+<script>
+  // thumbs: ogni card data-shots espone le sue foto; la prima è già in data-main
+  var SHOTS = {
+    "otto di sera": [
+      { src: "assets/render/otto-di-sera-1.jpg", alt: "otto di sera, colorway crema" },
+      { src: "assets/render/otto-di-sera-2.jpg", alt: "otto di sera, colorway terra" }
+    ],
+    "cancello": [
+      { src: "assets/render/cancello-1.jpg", alt: "cancello, colorway verde" },
+      { src: "assets/render/cancello-2.jpg", alt: "cancello, colorway crema" },
+      { src: "assets/render/cancello-3.jpg", alt: "cancello, colorway crema" },
+      { src: "assets/render/cancello-4.jpg", alt: "cancello, colorway terra" }
+    ]
+  };
+
+  document.querySelectorAll("[data-shots]").forEach(function (card) {
+    var name = card.querySelector("h3").textContent.trim();
+    var shots = SHOTS[name] || [];
+    var main = card.querySelector("[data-main]");
+    var mainImg = main.querySelector("img");
+    var thumbs = card.querySelector("[data-thumbs]");
+    if (!shots.length || !mainImg) return;
+
+    function showMissing() { main.querySelector(".missing").style.display = "flex"; mainImg.style.display = "none"; }
+    mainImg.onerror = showMissing;
+
+    shots.forEach(function (s, i) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("aria-label", s.alt);
+      if (i === 0) b.className = "active";
+      var im = document.createElement("img");
+      im.src = s.src; im.alt = ""; im.loading = "lazy";
+      im.onerror = function () { b.style.visibility = "hidden"; };
+      b.appendChild(im);
+      b.addEventListener("click", function () {
+        mainImg.style.display = "block";
+        main.querySelector(".missing").style.display = "none";
+        mainImg.src = s.src;
+        mainImg.alt = s.alt;
+        thumbs.querySelectorAll("button").forEach(function (x) { x.className = ""; });
+        b.className = "active";
+      });
+      thumbs.appendChild(b);
+    });
+  });
+
+  document.getElementById("wl").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var v = document.getElementById("email").value.trim();
+    if (v.indexOf("@") > 0 && v.indexOf(".") > v.indexOf("@")) {
+      document.getElementById("ok").style.display = "block";
+      this.reset();
+    }
+  });
+</script>
+
+</body>
+</html>
