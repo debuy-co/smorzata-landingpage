@@ -49,6 +49,24 @@ nota: manca ancora l'otto di sera verde — quando esiste, aggiungere
 `otto-di-sera-3.jpg` in `public/assets/render/` e una riga in
 `src/data/linea.js`.
 
+## deploy su github pages (smorzata.com)
+
+già configurato:
+
+- `.github/workflows/pages.yml` — a ogni push su main builda con vite e pubblica `dist/`
+- `public/CNAME` — dice a pages di servire `smorzata.com`
+- `vite.config.js` — `base: "./"` così gli asset funzionano anche sotto il dominio custom
+
+da fare una volta sola:
+
+1. repo → settings → pages → source: **github actions**
+2. dns del dominio (dal pannello del registrar):
+   - `smorzata.com` → record **A** verso `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+   - `www.smorzata.com` → record **CNAME** verso `<utente>.github.io`
+3. aspetta la propagazione (minuti-ore), poi settings → pages → **enforce https**
+
+nota: pages su repo private richiede un piano github a pagamento; su repo pubblica è gratis.
+
 ## tipografia live
 
 i fallback vanno bene per lo sviluppo. prima di pubblicare, caricare da google
