@@ -18,9 +18,7 @@ function CapoCard({ capo }) {
           />
         ) : (
           <div className="missing">
-            <span className="label">
-              {capo.stampe || "render in arrivo"}
-            </span>
+            <span className="label">{capo.stampe || "render in arrivo"}</span>
           </div>
         )}
       </div>
@@ -70,7 +68,9 @@ export default function Linea() {
         <h2 className="display">
           la linea<span className="terra">.</span>
         </h2>
-        <p className="sub">tre capi, tre pesi di tessuto, tre tecniche. ricamato, non urlato.</p>
+        <p className="sub">
+          tre capi, tre pesi di tessuto, tre tecniche. ricamato, non urlato.
+        </p>
         <div className="cards">
           {LINEA.map((capo) => (
             <CapoCard key={capo.nome} capo={capo} />

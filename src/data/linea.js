@@ -12,8 +12,14 @@ export const LINEA = [
     desc: "da mettere dopo la partita, dopo la doccia. collo alto, zip fino al petto.",
     fallback: "#ece3d0",
     shots: [
-      { src: "assets/render/otto-di-sera-1.jpg", alt: "otto di sera, colorway crema" },
-      { src: "assets/render/otto-di-sera-2.jpg", alt: "otto di sera, colorway terra" },
+      {
+        src: "assets/render/otto-di-sera-1.jpg",
+        alt: "otto di sera, colorway crema",
+      },
+      {
+        src: "assets/render/otto-di-sera-2.jpg",
+        alt: "otto di sera, colorway terra",
+      },
     ],
   },
   {
@@ -22,18 +28,32 @@ export const LINEA = [
     desc: "da sudati, dritti verso casa. il cancello del club, indosso.",
     fallback: "#1f3a2c",
     shots: [
-      { src: "assets/render/cancello-1.jpg", alt: "cancello, colorway verde" },
-      { src: "assets/render/cancello-2.jpg", alt: "cancello, colorway crema" },
-      { src: "assets/render/cancello-3.jpg", alt: "cancello, colorway crema" },
-      { src: "assets/render/cancello-4.jpg", alt: "cancello, colorway terra" },
+      {
+        src: "assets/render/cancello-1.jpg",
+        alt: "cancello, colorway verde",
+      },
+      {
+        src: "assets/render/cancello-3.jpg",
+        alt: "cancello, colorway crema",
+      },
+      {
+        src: "assets/render/cancello-4.jpg",
+        alt: "cancello, colorway terra",
+      },
     ],
   },
   {
-    nome: "la riga",
+    nome: "dal campo",
     tipo: "t-shirt · tre stampe · simbolo ricamato sull'orlo",
     desc: "il quadrato ricamato in basso a sinistra. la stampa fa il resto.",
     fallback: "#1f3a2c",
     stampe: "terra che macchia · cemento spaccato · la riga",
-    shots: [],
+    shots: [
+      {
+        src: "assets/render/cemento-spaccato-1.JPG",
+        alt: "cemento spaccato",
+      },
+      { src: "assets/render/la-riga-1.JPG", alt: "la riga" },
+    ],
   },
 ];
