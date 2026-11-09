@@ -13,8 +13,8 @@ export default function Hero() {
           polo stirata.
         </p>
         <p className="manifesto">
-          la smorzata è la palla che muore a un palmo dalla riga. non urla. non si
-          giustifica. nemmeno noi.
+          la smorzata è la palla che muore a un palmo dalla rete. tagliata, non urla.
+          non si giustifica. nemmeno noi.
         </p>
         <div className="cta-row">
           <a className="btn" href="#waitlist">
